@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="form-group">
+    <h3>Reactive-Form</h3>
+     <form [formGroup]="register" (ngSubmit)="GetData()">
+       <pre><input type="text" placeholder="enter name" formControlName="name"></pre>
+       <pre><input type="email" placeholder="enter number" formControlName="email"></pre>
+       <pre><input type="password" placeholder="enter password" formControlName="number"></pre>
+        <button type="submit">Add</button>
+     </form>
+  </div>
+ 
+</div>

@@ -1,0 +1,30 @@
+.container{
+    display:flex;
+    margin:0 auto;
+    width:50%;
+    background-color: grey;
+}
+.form-group{
+   margin:0 auto;
+   padding:20px;
+}
+form{
+    line-height:2.5;
+  
+}
+input{
+    padding:10px;
+    border:1px solid red;
+}
+h3{
+    text-align:center;
+    color:red;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+button{
+    margin:0 auto;
+    display:flex;
+   border:1px solid red;
+    border-radius: 2rem;
+    color:red;
+}
