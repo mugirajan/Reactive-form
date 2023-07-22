@@ -1,25 +1,28 @@
-import { Component , OnInit } from '@angular/core';
-import {FormGroup,FormControl} from '@angular/forms';
-
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'reactive-form';
-  register= new FormGroup({
-    name:new FormControl("mugi"),
-    email:new FormControl("mugirajan@gmail.com"),
-    number:new FormControl("9344")
-  });
+  register: FormGroup;
+  formDataArray: any[] = [];
 
-GetData(){
-    console.log(this.register.value)
-}
-ngOnInit(): void {
-   
- }
+  constructor(private formBuilder: FormBuilder) {
+    this.register = this.formBuilder.group({
+      name: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      number: ['']
+    });
+  }
 
+  onSubmit() {
+    if (this.register.valid) {
+      this.formDataArray.push(this.register.value);
+      this.register.reset(); // Reset the form after data is added to the array
+    }
+  }
 }

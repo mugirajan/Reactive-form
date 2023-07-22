@@ -1,12 +1,30 @@
 <div class="container">
-  <div class="form-group">
-    <h3>Reactive-Form</h3>
-     <form [formGroup]="register" (ngSubmit)="GetData()">
-       <pre><input type="text" placeholder="enter name" formControlName="name"></pre>
-       <pre><input type="email" placeholder="enter number" formControlName="email"></pre>
-       <pre><input type="password" placeholder="enter password" formControlName="number"></pre>
-        <button type="submit">Add</button>
-     </form>
-  </div>
+
+<div class="form-group">
+  
+ <form [formGroup]="register" (ngSubmit)="onSubmit()">
+  <h2>Reactive Form </h2>
+   <label>Name:</label>
+   <input type="text" formControlName="name"><br>
  
+   <label>Email:</label>
+   <input type="email" formControlName="email"><br>
+ 
+   <label>Number:</label>
+   <input type="text" formControlName="number"><br>
+ 
+   <button type="submit">Add Data</button>
+ </form>
 </div>
+</div>
+ 
+ <div class="display-data">
+   <h3>Form Data</h3>
+   <div *ngFor="let formData of formDataArray" class="output">
+     <p><strong>Name:</strong> {{ formData.name }}</p>
+     <p><strong>Email:</strong> {{ formData.email }}</p>
+     <p><strong>Number:</strong> {{ formData.number }}</p>
+     <hr>
+   </div>
+ </div>
+ 
