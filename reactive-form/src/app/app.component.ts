@@ -7,22 +7,34 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'reactive-form';
-  register: FormGroup;
-  formDataArray: any[] = [];
+ persons: any[] = [];
+ personForm:FormGroup;
+ currentIndex:any;
+ isUpdate:boolean=false;
+ 
 
-  constructor(private formBuilder: FormBuilder) {
-    this.register = this.formBuilder.group({
-      name: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
-      number: ['']
-    });
+ constructor(private fb:FormBuilder){
+  this.personForm=this.fb.group({
+    name:['',Validators.required],
+    email: ['',Validators.required],
+    number: ['',Validators.required]
+  });
+  console.log(this.personForm)
+ }
+
+  add() {
+    this.persons.push(this.personForm.value)
   }
-
-  onSubmit() {
-    if (this.register.valid) {
-      this.formDataArray.push(this.register.value);
-      this.register.reset(); // Reset the form after data is added to the array
-    }
+  delete(index:any){
+      this.persons.splice(index,1)
+  }
+  edit(person:any,index:any){
+      this.currentIndex =  index;
+      this.personForm.setValue(person);
+      this.isUpdate=true;
+  }
+  update(){
+    this.persons[this.currentIndex]=this.personForm.value;
+    this.isUpdate=false;
   }
 }

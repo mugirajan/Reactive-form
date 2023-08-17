@@ -1,30 +1,37 @@
-<div class="container">
+ 
+<div class="form-container"> 
+  <div class="form-sub-container">
+    <form [formGroup]="personForm">
+      <h2>Reactive Form</h2>
+      <label>Name:</label>
+      <input type="text" formControlName="name"><br>
 
-<div class="form-group">
-  
- <form [formGroup]="register" (ngSubmit)="onSubmit()">
-  <h2>Reactive Form </h2>
-   <label>Name:</label>
-   <input type="text" formControlName="name"><br>
- 
-   <label>Email:</label>
-   <input type="email" formControlName="email"><br>
- 
-   <label>Number:</label>
-   <input type="text" formControlName="number"><br>
- 
-   <button type="submit">Add Data</button>
- </form>
+      <label>Email:</label>
+      <input type="email" formControlName="email"><br>
+
+      <label>Number:</label>
+      <input type="text" formControlName="number"><br>
+    </form>
+
+<button (click)="add()" *ngIf="!isUpdate">Add</button>
+<button (click)="update()" *ngIf="isUpdate">Update</button>
+
+<table border="1" >
+  <tr>
+    <th>name</th>
+    <th>email</th>
+    <th>number</th>
+    <th>delete button</th>
+    <th>edit button</th>
+  </tr>
+  <tr *ngFor="let person of persons;let i=index;">
+    <td>{{person.name}}</td>
+    <td>{{person.email}}</td>
+    <td>{{person.number}}</td>
+    <td><button (click)="delete(i)">Delete</button></td>
+    <td><button  (click)="edit(person,i)">Edit</button></td>
+  </tr>
+</table>
 </div>
-</div>
- 
- <div class="display-data">
-   <h3>Form Data</h3>
-   <div *ngFor="let formData of formDataArray" class="output">
-     <p><strong>Name:</strong> {{ formData.name }}</p>
-     <p><strong>Email:</strong> {{ formData.email }}</p>
-     <p><strong>Number:</strong> {{ formData.number }}</p>
-     <hr>
-   </div>
- </div>
- 
+</div> 
+
